@@ -20,7 +20,12 @@ main {
   padding-right: 20px;
 }
 
-/* TODO taka ætti padding af main þegar komið er fyrir ofan hámarksbreidd */
+@media only screen and (min-width: 1450px) {
+  main {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
 
 h1 {
   text-align: center;
@@ -40,64 +45,69 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* grid fyrir efni, setja þarf upp í html */
-
-.grid__row {
-  display: flex;
-  flex-direction: column;
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
 .grid__col {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100%;
   width: 100%;
   padding-right: 10px;
   padding-left: 10px;
 }
 
-/* TODO setja upp grid fyrir >= 1000px */
-
-/* TODO koma mynd fyrir á öðrum stað í < 1000px */
-
-/* grid fyrir cards */
-
-.cards {
+@media only screen and (max-width: 699px) {
+  .grid__col {
+    width: 100%;
+    flex-direction: column;
+  }
 }
 
-/* TODO útfæra grid fyrir cards */
+@media only screen and (min-width: 1000px) {
+  .grid__col {
+    width: 50%;
+    margin-bottom: 40px;
+  }
+}
 
-/* grid fyrir cards, setja þarf upp í html */
+.grid__row {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  height: 100%;
+  width: 100%;
+  margin-left: -10px;
+  margin-right: -10px;
+}
 
-.cards__row {
-    display: flex;
+@media only screen and (max-width: 699px) {
+  .grid__row {
     flex-direction: column;
-    margin-left: -10px;
-    margin-right: -10px;
+    width: 100%
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .grid__row {
+    flex-direction: column;
+    width: 100%
+  }
+}
+
+.grid__col :nth-child(even) {
+  display: flex;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  
+    background: #eee;
+
+    margin-bottom: 20px;
   }
   
-  .cards__col {
-    width: 100%;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-
-  .grid__img {
-      width: 100%;
-      padding-right: 10px;
-      padding-left: 10px;
-  }
-
-  .image {
-      max-width: 100%
-  }
-
-/*
-  .card kemur óbreytt úr sýnilausn á verkefni 5 fyrir utan responsive stíla og
-  að það fær `height: 100%;`
-  Sýnilausn verður gefin út við lok dags miðvikudaginn 3. okt
-*/
-
-.card {
+  .card {
     display: flex;
     flex-direction: column;
   
@@ -106,7 +116,6 @@ h1 {
     width: 100%;
     max-width: 470px;
     max-height: 300px;
-    height: 100%;
     overflow: hidden;
   
     background-color: #fff;
@@ -114,4 +123,95 @@ h1 {
     border-radius: 5px;
   }
 
-/* TODO responsive stílar fyrir .card */
+  @media only screen and (max-width: 699px){
+    .card {
+      height: 100%;
+      width: 100%;
+      max-width: none;
+      max-height: none;
+      border-right: none;
+      border-top: none;
+      border-left: none;
+      border-bottom: 2px solid #aaa;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    .card__image {
+      padding-left: 0px;
+    }
+  }
+
+  @media only screen and (min-width: 700px) {
+    .card {
+      width: 50%;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;    
+      padding: 10px;
+      max-width: 470px;
+      max-height: 300px;
+      overflow: hidden;
+        
+      background-color: #fff;
+      border: 2px solid #aaa;
+      border-radius: 5px;
+    }
+  }
+
+  @media only screen and (min-width: 1000px){
+    .card {
+      width: 33.3%;
+    }
+  }
+
+  .card__title {
+    margin-bottom: 20px;
+  
+    font-size: 1.375em;
+    line-height: 1;
+    word-break: break-word;
+  }
+  
+  .card__content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .card__text {
+    font-size: 1em;
+    line-height: 1.375;
+    overflow: auto;
+    word-break: break-word;
+  }
+  
+  .card__image {
+    padding-left: 20px;
+    flex: 0 0 150px;
+  }
+  
+  .card__img {
+    max-width: 100%;
+  }
+
+  @media only screen and (max-width: 699px){
+    .card__image {
+      padding-left: 20px;
+      flex: 0 0 150px;
+    }
+  }
+  
+  .card__tags {
+    margin-top: 10px;
+  
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  
+    list-style: none;
+  }
+  
+  .card__tag {
+    font-weight: bold;
+    margin-right: 10px;
+  }
